@@ -1,5 +1,7 @@
 services:
   anagrams-application:
-    image: my-image:latest
+    image: anagrams-image:latest
     ports:
       - "8080:8080"
+    volumes:
+      - C:/tmp/Dictionary.txt:/tmp/Dictionary.txt
