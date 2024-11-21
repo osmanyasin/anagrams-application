@@ -16,10 +16,10 @@ public class Word {
     public Word(String content) {
         this.content = content;
         this.length = content.length();
-        this.sortedKey = orderContent(content);
+        this.sortedKey = genSortedKey(content);
     }
 
-    private static String orderContent(String content) {
+    private static String genSortedKey(String content) {
         char[] chArr = content.toCharArray();
         Arrays.sort(chArr);
         return new String(chArr);

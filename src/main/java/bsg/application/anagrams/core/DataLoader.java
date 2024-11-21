@@ -1,7 +1,5 @@
-package bsg.application.anagrams;
+package bsg.application.anagrams.core;
 
-import bsg.application.anagrams.core.Word;
-import bsg.application.anagrams.core.WordMapper;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.boot.CommandLineRunner;
@@ -53,7 +51,7 @@ public class DataLoader implements CommandLineRunner {
     @Transactional
     private void insertBatch(List<Word> wordRecords) {
         try {
-            this.wordMapper.insertWords(wordRecords);
+            this.wordMapper.saveAll(wordRecords);
             log.debug("Inserted {} words", wordRecords.size());
         } catch (Exception e) {
             log.error("Error inserting batch", e);
