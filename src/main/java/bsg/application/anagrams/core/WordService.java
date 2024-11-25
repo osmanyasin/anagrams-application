@@ -1,6 +1,8 @@
 package bsg.application.anagrams.core;
 
 import lombok.RequiredArgsConstructor;
+import org.springframework.cache.annotation.CacheEvict;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
 
 import java.util.Arrays;
@@ -11,6 +13,7 @@ import java.util.List;
 public class WordService {
     private final WordMapper wordMapper;
 
+    @CacheEvict(value = "paginatedWordsCache", allEntries = true)
     public void addWord(String word) {
         this.wordMapper.save(new Word(word));
     }
@@ -24,6 +27,7 @@ public class WordService {
         return this.wordMapper.findAll();
     }
 
+    @Cacheable(value = "paginatedWordsCache", key = "'limit_' + #limit + '_offset_' + #offset")
     public List<String> getPaginatedWords(int limit, int offset) {
         return this.wordMapper.findPaginated(limit, offset);
     }
@@ -43,6 +47,7 @@ public class WordService {
         return this.wordMapper.findAnagramCountsByLength();
     }
 
+    @CacheEvict(value = "paginatedWordsCache", allEntries = true)
     public void removeWord(String word) {
         this.wordMapper.remove(word);
     }
