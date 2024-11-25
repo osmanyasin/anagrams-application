@@ -14,7 +14,7 @@ import java.util.List;
 @RequestMapping(value = "/anagrams")
 @RequiredArgsConstructor
 @Slf4j
-@CrossOrigin(origins = "http://localhost:4200")
+@CrossOrigin(origins = {"http://localhost:4200", "http://localhost:8081"})
 public class AnagramsController {
 
     private final WordService wordService;

@@ -78,6 +78,7 @@ Restrictions
 
 NB: Feel free to use any combination of the above
 
-Run locally using docker
-docker build -t anagrams-image:latest .
-docker-compose up
+Run locally with docker
+------------
+- docker build -t anagrams-image:latest .
+- docker-compose up
