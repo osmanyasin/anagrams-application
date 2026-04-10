@@ -79,22 +79,18 @@ import { AnagramsService, AnagramCountResponse } from '../../core/services/anagr
       color: var(--colour-text);
     }
 
-    .length-cell {
-      font-weight: 500;
-      color: var(--colour-accent);
-      width: 160px;
-    }
-
-    .bar-cell { width: 100%; }
-
-    .bar-wrap {
-      display: flex;
-      align-items: center;
-      gap: var(--space-3);
+    .length-sentence {
+      font-size: 0.9rem;
+      margin-bottom: var(--space-2);
+    
+      strong {
+        font-weight: 600;
+        color: var(--colour-accent);
+      }
     }
 
     .bar-track {
-      flex: 1;
+      width: 100%;
       height: 6px;
       background: var(--colour-border);
       border-radius: 99px;
@@ -106,13 +102,6 @@ import { AnagramsService, AnagramCountResponse } from '../../core/services/anagr
       background: var(--colour-accent);
       border-radius: 99px;
       transition: width 400ms ease;
-    }
-
-    .bar-value {
-      font-size: 0.85rem;
-      color: var(--colour-text-muted);
-      min-width: 60px;
-      text-align: right;
     }
 
     .empty {
@@ -168,23 +157,21 @@ import { AnagramsService, AnagramCountResponse } from '../../core/services/anagr
             <table>
               <thead>
                 <tr>
-                  <th>Word length</th>
-                  <th>Anagram groups</th>
+                  <th>Summary</th>
                 </tr>
               </thead>
               <tbody>
                 @for (row of rows(); track row.length) {
                   <tr>
-                    <td class="length-cell">{{ row.length }} letters</td>
-                    <td class="bar-cell">
-                      <div class="bar-wrap">
-                        <div class="bar-track">
-                          <div
-                            class="bar-fill"
-                            [style.width.%]="percentage(row.count)"
-                          ></div>
-                        </div>
-                        <span class="bar-value">{{ row.count | number }} groups</span>
+                    <td>
+                      <p class="length-sentence">
+                        Words with the character length of <strong>{{ row.length }}</strong> had <strong>{{ row.count | number }}</strong> anagram groups
+                      </p>
+                      <div class="bar-track">
+                        <div
+                          class="bar-fill"
+                          [style.width.%]="percentage(row.count)"
+                        ></div>
                       </div>
                     </td>
                   </tr>
