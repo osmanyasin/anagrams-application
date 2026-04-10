@@ -10,6 +10,7 @@ spring:
       ddl-auto: update
 
 app:
+  server-url: "https://anagrams-application.onrender.com/"
   cors:
-    allowed-origins: "*"
+    allowed-origin-patterns: "*"
     allowed-methods: GET,POST,PUT,DELETE,OPTIONS

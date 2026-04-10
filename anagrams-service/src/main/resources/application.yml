@@ -22,6 +22,7 @@ springdoc:
     path: /api-docs
 
 app:
+  server-url: "http://localhost:4200"
   cors:
-    allowed-origins: "http://localhost:4200"
+    allowed-origin-patterns: "*"
     allowed-methods: GET,POST,PUT,DELETE,OPTIONS
