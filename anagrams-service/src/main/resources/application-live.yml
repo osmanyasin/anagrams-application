@@ -6,11 +6,10 @@ spring:
     password: ${DB_PASSWORD}
 
   jpa:
-    database-platform: org.hibernate.dialect.PostgreSQLDialect
     hibernate:
       ddl-auto: update
 
 app:
   cors:
-    allowed-origins: "https://anagrams-client.onrender.com"
+    allowed-origins: "*"
     allowed-methods: GET,POST,PUT,DELETE,OPTIONS
