@@ -24,6 +24,8 @@ public class DictionarySeeder implements ApplicationRunner {
 
     @Override
     public void run(ApplicationArguments args) throws Exception {
+        log.info("DictionarySeeder triggered - checking word count...");
+
         if (wordService.wordCount() > 0) {
             log.info("Dictionary table already populated ({} words) - skipping seed.", wordService.wordCount());
             return;
