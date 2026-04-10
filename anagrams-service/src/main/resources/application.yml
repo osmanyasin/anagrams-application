@@ -2,6 +2,9 @@ server:
   port: 8080
 
 spring:
+  threads:
+    virtual:
+      enabled: true
   jpa:
     show-sql: false
     properties:
