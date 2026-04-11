@@ -1,4 +1,4 @@
 export const environment = {
     production: true,
-    apiUrl: 'https://anagrams-application.onrender.com/api/v1'
+    apiUrl: 'https://anagrams-service.onrender.com/api/v1'
 };
