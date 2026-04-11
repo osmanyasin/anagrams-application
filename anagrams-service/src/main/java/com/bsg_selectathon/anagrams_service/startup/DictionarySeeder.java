@@ -55,7 +55,11 @@ public class DictionarySeeder implements ApplicationRunner {
         timer.stop();
 
         timer.start("insert");
-        wordService.bulkInsert(words);
+        int chunkSize = 500;
+        for (int i = 0; i < words.size(); i += chunkSize) {
+            List<String> chunk = words.subList(i, Math.min(i + chunkSize, words.size()));
+            wordService.bulkInsert(chunk);
+        }
         timer.stop();
 
         log.info(timer.prettyPrint());

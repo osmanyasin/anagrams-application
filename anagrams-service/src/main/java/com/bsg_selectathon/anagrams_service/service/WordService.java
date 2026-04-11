@@ -5,7 +5,6 @@ import com.bsg_selectathon.anagrams_service.dto.AnagramCountRow;
 import com.bsg_selectathon.anagrams_service.dto.AnagramsResponse;
 import com.bsg_selectathon.anagrams_service.entity.Word;
 import com.bsg_selectathon.anagrams_service.repository.WordRepository;
-import jakarta.persistence.EntityManager;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -27,7 +26,6 @@ import java.util.stream.Collectors;
 public class WordService {
 
     private final WordRepository wordRepository;
-    private final EntityManager entityManager;
 
     private static String sorted(String word) {
         char[] chars = word.toLowerCase().toCharArray();
@@ -49,13 +47,7 @@ public class WordService {
 
         if (entities.isEmpty()) return;
 
-        int chunkSize = 500;
-        for (int i = 0; i < entities.size(); i += chunkSize) {
-            List<Word> chunk = entities.subList(i, Math.min(i + chunkSize, entities.size()));
-            wordRepository.saveAll(chunk);
-            wordRepository.flush();
-            entityManager.clear();
-        }
+        wordRepository.saveAll(entities);
     }
 
     @Transactional
